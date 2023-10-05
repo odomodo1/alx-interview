@@ -14,3 +14,9 @@ def canUnlockAll(boxes):
     if len(keys) == len(boxes):
         return True
     return False
+
+# Example usage:
+if __name__ == "__main__":
+    boxes = [[1], [2], [3], [4], []]  # Modify this list as needed
+    result = canUnlockAll(boxes)
+    print(result)
