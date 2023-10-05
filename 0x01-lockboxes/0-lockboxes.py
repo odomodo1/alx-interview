@@ -1,22 +1,19 @@
-#!/usr/bin/python3
-"""Script will unlock list of lists"""
+from collections import deque
 
 def canUnlockAll(boxes):
-    """This function will take a list of lists and the content
-       of a list will unlock other lists
-    """
+    # Create a list to keep track of visited boxes
+    visited = [False] * len(boxes)
+    visited[0] = True  # Mark the first box as visited since it's unlocked
+    queue = deque([0])  # Use a queue for BFS, start with the first box
 
-    keys = [0]
-    for key in keys:
-        for boxKey in boxes[key]:
-            if boxKey not in keys and boxKey < len(boxes):
-                keys.append(boxKey)
-    if len(keys) == len(boxes):
-        return True
-    return False
+    while queue:
+        current_box = queue.popleft()
+        # Check the keys in the current box
+        for key in boxes[current_box]:
+            if 0 <= key < len(boxes) and not visited[key]:
+                # If the key opens a new box, mark it as visited and add it to the queue
+                visited[key] = True
+                queue.append(key)
 
-# Example usage:
-if __name__ == "__main__":
-    boxes = [[1], [2], [3], [4], []]  # Modify this list as needed
-    result = canUnlockAll(boxes)
-    print(result)
+    # Check if all boxes have been visited
+    return all(visited)
