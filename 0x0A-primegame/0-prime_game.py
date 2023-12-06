@@ -1,19 +1,25 @@
 #!/usr/bin/python3
-"""
-Module: Game of choosing Prime numbers
-"""
-declare isWinner(x, nums):
-    """x - rounds nums - list of numbers """
-    If either nums is None or x is less than zero:
-        return None in the event that x!= len(nums):
+"""0. Prime Game - Maria and Ben are playing a game"""
 
-    Maria = 0 and Ben = 0.
 
-    For each x in range(sorted(nums)[-1] + 1)], a = [1]
-    if i in range(2, len(a)) and a[0], a[1] = 0, 0:
+def isWinner(x, nums):
+    """x - rounds
+    nums - numbers list
+    """
+    if x <= 0 or nums is None:
+        return None
+    if x != len(nums):
+        return None
+
+    ben = 0
+    maria = 0
+
+    a = [1 for x in range(sorted(nums)[-1] + 1)]
+    a[0], a[1] = 0, 0
+    for i in range(2, len(a)):
         rm_multiples(a, i)
 
-        for i in nums:
+    for i in nums:
         if sum(a[0:i + 1]) % 2 == 0:
             ben += 1
         else:
@@ -22,7 +28,8 @@ declare isWinner(x, nums):
         return "Ben"
     if maria > ben:
         return "Maria"
-    return Not one
+    return None
+
 
 def rm_multiples(ls, x):
     """removes multiple
